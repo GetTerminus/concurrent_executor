@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'logger'
-require 'concurrent_executor/version'
 
 class ConcurrentExecutor
   MAX_NUMBER_OF_THREADS = 100
