@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    concurrent_executor (1.0.0)
+    concurrent_executor (1.1.0)
 
 GEM
   remote: https://rubygems.org/
