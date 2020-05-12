@@ -4,9 +4,9 @@ require 'logger'
 
 class ConcurrentExecutor
   MAX_NUMBER_OF_THREADS = 100
-  attr_accessor :threads, :queue, :number_of_threads, :executor, :logger
+  attr_accessor :threads, :queue, :number_of_threads, :executor, :logger, :trace
 
-  def initialize(number_of_threads: 4, queue_size: 100, executor: nil)
+  def initialize(number_of_threads: 4, queue_size: 100, executor: nil, trace: true)
     raise 'queue must be sized' unless queue_size
     raise 'number of threads must be > 0' unless (0..MAX_NUMBER_OF_THREADS).cover?(number_of_threads)
 
@@ -25,6 +25,7 @@ class ConcurrentExecutor
     self.executor = executor
     self.queue = SizedQueue.new(queue_size)
     self.number_of_threads = number_of_threads
+    self.trace = trace
 
     start_threads
   end
@@ -57,7 +58,7 @@ class ConcurrentExecutor
 
   def start_threads
     number_of_threads.times do
-      threads << if Thread.respond_to?(:new_traced)
+      threads << if self.trace && Thread.respond_to?(:new_traced)
                    Thread.new_traced(&method(:work_loop))
                  else
                    Thread.new(&method(:work_loop))
