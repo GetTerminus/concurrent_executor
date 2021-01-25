@@ -66,10 +66,18 @@ class ConcurrentExecutor
     end
   end
 
+  def metadata
+    {queue_size: queue.size}
+  end
+
   def work_loop
     while (work_item = queue.pop)
       begin
-        executor.call(work_item)
+        if executor.arity == 1
+          executor.call(work_item)
+        else
+          executor.call(work_item, metadata)
+        end
       rescue StandardError => e
         @errors << e
         queue.clear

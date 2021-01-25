@@ -28,6 +28,16 @@ RSpec.describe ConcurrentExecutor do
       ConcurrentExecutor.consume_enumerable([1, 2, 3, 4], &block)
     end
 
+    it 'allows it to receive metadata' do
+      expect(block).to receive(:call).with(1, {queue_size: 3})
+      expect(block).to receive(:call).with(2, {queue_size: 2})
+      expect(block).to receive(:call).with(3, {queue_size: 1})
+      expect(block).to receive(:call).with(4, {queue_size: 0})
+
+      ConcurrentExecutor.consume_enumerable([1, 2, 3, 4], &block)
+    end
+
+
     describe 'throwing errors' do
       it 'throws errors and stop right away when an error is encountered' do
         received = []
