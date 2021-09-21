@@ -20,8 +20,4 @@ jobs:
       - name: Run Test
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: >
-          bash -c "
-          mkdir -p /coverage;
-          bundle install;
-          COVERALLS_NOISY=true bundle exec rspec --color --format documentation;"
+        run: mkdir -p /coverage && bundle install && COVERALLS_NOISY=true bundle exec rspec --color --format documentation
