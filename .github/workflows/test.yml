@@ -18,6 +18,8 @@ jobs:
           path: ${{ github.workspace }}/src/github.com/${{ github.repository }}
 
       - name: Run Test
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
         run: >
           bash -c "
           mkdir -p /coverage;
