@@ -14,10 +14,8 @@ jobs:
     steps:
       - name: Pull
         uses: actions/checkout@v2
-        with:
-          path: ${{ github.workspace }}/src/github.com/${{ github.repository }}
-
       - name: Run Test
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        run: mkdir -p /coverage && bundle install && COVERALLS_NOISY=true bundle exec rspec --color --format documentation
+          COVERALLS_NOISY: true 
+        run: mkdir -p /coverage && bundle install && bundle exec rspec --color --format documentation
