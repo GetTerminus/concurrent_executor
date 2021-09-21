@@ -20,6 +20,7 @@ RSpec.describe ConcurrentExecutor do
 
   describe '.consume_enumerable' do
     it 'passes each enumerable to the provided block' do
+      block = ->(a) {}
       expect(block).to receive(:call).with(1)
       expect(block).to receive(:call).with(2)
       expect(block).to receive(:call).with(3)

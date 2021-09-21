@@ -33,12 +33,12 @@ class ConcurrentExecutor
   def consume_enumerable(enum)
     enum.each(&queue.method(:push))
   rescue ClosedQueueError
-    self.class.logger.warn 'Queue closed during iteration'
+    logger.warn 'Queue closed during iteration'
   end
 
   class << self
     def consume_enumerable(enum, **args, &blk)
-      executor = new(args.merge(executor: blk))
+      executor = new(**args.merge(executor: blk))
       executor.consume_enumerable(enum)
     rescue StandardError => e
       puts e

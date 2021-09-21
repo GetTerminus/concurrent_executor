@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    concurrent_executor (1.1.0)
+    concurrent_executor (1.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -68,4 +68,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.1.4
+   2.2.22
