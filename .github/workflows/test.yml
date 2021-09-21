@@ -18,19 +18,8 @@ jobs:
           path: ${{ github.workspace }}/src/github.com/${{ github.repository }}
 
       - name: Run Test
-        working-directory: ${{ github.workspace }}/src/github.com/${{ github.repository }}
         run: >
           bash -c "
           mkdir -p /coverage;
           bundle install;
           COVERALLS_NOISY=true bundle exec rspec --color --format documentation;"
-
-      - name: Push Coveralls
-        continue-on-error: true
-        env:
-          TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-        working-directory: ${{ github.workspace }}/src/github.com/${{ github.repository }}
-        run: >
-          bash -c "
-          wget -cq https://coveralls.io/coveralls-linux.tar.gz -O - | tar -xz;
-          ./coveralls -r $TOKEN -f /coverage/lcov.info;"
