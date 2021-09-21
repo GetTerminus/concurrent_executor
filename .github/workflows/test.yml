@@ -22,7 +22,7 @@ jobs:
         run: >
           bash -c "
           mkdir -p /coverage;
-          bundle --local;
+          bundle install;
           COVERALLS_NOISY=true bundle exec rspec --color --format documentation;"
 
       - name: Push Coveralls
