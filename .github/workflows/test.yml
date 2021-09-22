@@ -1,0 +1,21 @@
+name: Test
+
+on: push
+
+jobs:
+  ruby-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        rubyimage: ["getterminus/ruby-docker-images:3.0-je-20210920", "getterminus/ruby-docker-images:2.7-je-20210920",]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.rubyimage }}
+    steps:
+      - name: Pull
+        uses: actions/checkout@v2
+      - name: Run Test
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+          COVERALLS_NOISY: true 
+        run: mkdir -p /coverage && bundle install && bundle exec rspec --color --format documentation

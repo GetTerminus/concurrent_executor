@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'simplecov'
-SimpleCov.start do
-  enable_coverage :branch
-end
-
-require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+require 'coveralls'
+Coveralls.wear!
 
 require 'concurrent_executor'
 
