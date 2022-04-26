@@ -7,8 +7,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rubyimage: ["getterminus/ruby-docker-images:3.0-je-20220126", "getterminus/ruby-docker-images:2.7-je-20220126
-", "getterminus/ruby-docker-images:3.1-je-20220126"]
+        rubyimage: ["getterminus/ruby-docker-images:3.0-je-20220426", "getterminus/ruby-docker-images:2.7-je-20220426
+", "getterminus/ruby-docker-images:3.1-je-20220426"]
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.rubyimage }}
