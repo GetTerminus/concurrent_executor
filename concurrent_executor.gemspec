@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Execute things concurrently'
   spec.description   = 'Executes things concurrently'
   spec.homepage      = 'https://github.com/GetTerminus/concurrent_executor'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
 
   spec.metadata['allowed_push_host'] = 'https://www.rubygems.org'
 
@@ -31,5 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 12'
   spec.add_development_dependency 'rspec', '~> 3'
   spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'simplecov-lcov'
 end

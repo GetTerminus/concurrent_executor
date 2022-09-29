@@ -1,8 +1,31 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'coveralls'
-Coveralls.wear!
+
+require 'simplecov'
+SimpleCov.start do
+  enable_coverage :branch
+
+  add_group 'Data Sets', 'app/data_sets'
+  add_group 'Jobs', 'app/jobs'
+  add_group 'CRON', 'app/cron'
+  add_group 'Kernel', 'lake_front_kernel'
+  add_group 'API V1', 'app/grpc/v1'
+  add_filter '/vendor/'
+  add_filter '/spec/'
+  add_filter '/app/config/'
+
+  if ENV['CI']
+    require 'simplecov-lcov'
+
+    SimpleCov::Formatter::LcovFormatter.config do |c|
+      c.report_with_single_file = true
+      c.single_report_path = 'coverage/lcov.info'
+    end
+
+    formatter SimpleCov::Formatter::LcovFormatter
+  end
+end
 
 require 'concurrent_executor'
 

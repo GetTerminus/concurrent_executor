@@ -1,6 +1,7 @@
 inherit_from: https://raw.githubusercontent.com/GetTerminus/ruby_shared_configs/master/.rubocop.yml
 
 AllCops:
+  TargetRubyVersion: 2.7.0
   Exclude:
     - Makefile
     - vendor/**/*

@@ -1,4 +1,4 @@
-name: Test
+name: Lint
 
 on: push
 
@@ -9,8 +9,6 @@ jobs:
       matrix:
         ruby:
           - "2.7.6"
-          - "3.0.4"
-          - "3.1.2"
     runs-on: ubuntu-latest
     steps:
       - name: Pull
@@ -20,10 +18,4 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Run Tests
-        run: bundle exec rspec --color --format documentation
-      - name: Coveralls
-        uses: coverallsapp/github-action@v1.1.2
-        continue-on-error: true
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel: true
+        run: bundle exec rubocop
