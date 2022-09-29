@@ -8,9 +8,9 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - 2.7
-          - 3.0
-          - 3.1
+          - "2.7.6"
+          - "3.0.4"
+          - "3.1.2"
     runs-on: ubuntu-latest
     steps:
       - name: Pull
