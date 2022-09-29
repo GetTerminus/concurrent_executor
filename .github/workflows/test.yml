@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull
-        uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
+        uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
@@ -23,4 +23,5 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
           COVERALLS_NOISY: true 
-        run: bundle exec rspec --color --format documentation
+        run: |
+          bundle exec rspec --color --format documentation
