@@ -7,14 +7,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rubyimage: ["getterminus/ruby-docker-images:3.0-je-20220426", "getterminus/ruby-docker-images:2.7-je-20220426
-", "getterminus/ruby-docker-images:3.1-je-20220426"]
+        ruby:
+          - 2.7
+          - 3.0
+          - 3.1
     runs-on: ubuntu-latest
-    container:
-      image: ${{ matrix.rubyimage }}
     steps:
       - name: Pull
         uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
       - name: Run Test
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
