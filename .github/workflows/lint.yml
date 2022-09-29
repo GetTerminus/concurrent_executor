@@ -1,0 +1,21 @@
+name: Lint
+
+on: push
+
+jobs:
+  ruby-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - "2.7.6"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull
+        uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run Tests
+        run: bundle exec rubocop

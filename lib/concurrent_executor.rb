@@ -18,7 +18,7 @@ class ConcurrentExecutor
                   elsif defined?(App) && App.respond_to?(:logger)
                     App.logger
                   else
-                    Logger.new(STDERR)
+                    Logger.new($stderr)
                   end
 
     self.threads = []
@@ -58,7 +58,7 @@ class ConcurrentExecutor
 
   def start_threads
     number_of_threads.times do
-      threads << if self.trace && Thread.respond_to?(:new_traced)
+      threads << if trace && Thread.respond_to?(:new_traced)
                    Thread.new_traced(&method(:work_loop))
                  else
                    Thread.new(&method(:work_loop))
@@ -67,7 +67,7 @@ class ConcurrentExecutor
   end
 
   def metadata
-    {queue_size: queue.size}
+    { queue_size: queue.size }
   end
 
   def work_loop
