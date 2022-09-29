@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'coveralls'
-Coveralls.wear!
-
 require 'concurrent_executor'
 
 RSpec.configure do |config|
