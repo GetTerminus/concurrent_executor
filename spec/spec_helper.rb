@@ -27,7 +27,6 @@ SimpleCov.start do
   end
 end
 
-
 require 'concurrent_executor'
 
 RSpec.configure do |config|
